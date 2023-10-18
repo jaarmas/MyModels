@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+concentrated_recipes,concentrated recipes,model_mrp_bom,group_concentrated_recipes,1,1,1,1
+premix_recipes,premix recipes,model_mrp_bom,group_premix_recipes,1,1,1,1

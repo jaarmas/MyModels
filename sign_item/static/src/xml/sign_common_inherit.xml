@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<t t-extend="sign.sign_item">
+    <t t-jquery=".o_sign_sign_item:eq(5)" t-operation="after">
+        <div t-if="type == 'sequential' &amp;&amp; !isSignItemEditable" t-att-title="role" class="o_sign_sign_item"><t t-if="!value"><p class="o_placeholder o_sign_field_alignment"><t t-esc="placeholder"/></p></t><t t-esc="value"/><t t-if="editMode" t-call="sign.sign_item_configuration"/></div>
+    </t>
+    <t t-jquery=".o_sign_sign_item:eq(11)" t-operation="after">
+            <input t-if="type == 'sequential'" t-att-title="role" type="text" class="o_sign_sign_item" t-att-placeholder="placeholder" readonly="readonly"/>
+    </t>
+</t>
+
+<t t-extend="sign.thank_you_dialog">
+    <t t-jquery=".o_thankyou_message:eq(1)" t-operation="replace">
+            <p>
+                A continuación, se adjunta información bancaria para pagos:<br/><br/>
+                PRODUBANCO <br/>
+                Cuenta Corriente 2005215834<br/>
+                DATOS Y COMUNICACIONES IT DATACOMECUADOR S.A.<br/>
+                RUC 1792644771001<br/>
+                Correo contabilidad: contabilidad@datacom.ec<br/>
+                Correo recepción de retenciones: contabilidad@datacom.ec<br/>
+                Teléfono contabilidad: 3730580 ext. 3002
+            </p>
+    </t>
+</t>
+
+</templates>
+

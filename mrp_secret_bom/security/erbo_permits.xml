@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<odoo>
+    <record id="group_concentrated_recipes" model="res.groups">
+        <field name="name">Concentrated Manufacturing</field>
+    </record>
+    <record id="group_premix_recipes" model="res.groups">
+        <field name="name">Premix Manufacturing</field>
+    </record>
+
+    <record id="access_mrp_bom_concentrated" model="ir.rule">
+        <field name="name">Access Manufacturing Concentrated</field>
+        <field name="model_id" ref="model_mrp_bom" />
+        <field name="domain_force">[('recipe_type', '!=', 'premix')]</field>
+        <field name="groups" eval="[(4, ref('group_concentrated_recipes'))]" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+    <record id="access_mrp_bom_premix" model="ir.rule">
+        <field name="name">Access Manufacturing Premix</field>
+        <field name="model_id" ref="model_mrp_bom" />
+        <field name="domain_force">[('recipe_type', '!=', 'concentrated')]</field>
+        <field name="groups" eval="[(4, ref('group_premix_recipes'))]" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+    <record id="access_hide_concentrated_premix" model="ir.rule">
+        <field name="name">Hide Concentrated and Premix Records</field>
+        <field name="model_id" ref="model_mrp_bom" />
+        <field
+      name="domain_force"
+    >[('recipe_type', '!=', 'concentrated'),('recipe_type', '!=', 'premix')]</field>
+        <field name="groups" eval="[(6, 0, [ref('base.group_user')])]" />
+    </record>
+
+
+    <record id="access_mrp_products_concentrated" model="ir.rule">
+        <field name="name">Access Products Orders Concentrated</field>
+        <field name="model_id" ref="model_mrp_production" />
+        <field name="domain_force">[('bom_id.recipe_type', '!=', 'premix')]</field>
+        <field name="groups" eval="[(4, ref('group_concentrated_recipes'))]" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+    <record id="access_mrp_products_premix" model="ir.rule">
+        <field name="name">Access Products Orders Premix</field>
+        <field name="model_id" ref="model_mrp_production" />
+        <field
+      name="domain_force"
+    >[('bom_id.recipe_type', '!=', 'concentrated')]</field>
+        <field name="groups" eval="[(4, ref('group_premix_recipes'))]" />
+        <field name="perm_read" eval="1" />
+        <field name="perm_write" eval="1" />
+        <field name="perm_create" eval="1" />
+        <field name="perm_unlink" eval="1" />
+    </record>
+
+    <record id="access_hide_concentrated_premix_products_orders" model="ir.rule">
+        <field
+      name="name"
+    >Hide Concentrated and Premix Records of Products Orders</field>
+        <field name="model_id" ref="model_mrp_production" />
+        <field
+      name="domain_force"
+    >[('bom_id.recipe_type', '!=', 'concentrated'),('bom_id.recipe_type', '!=', 'premix')]</field>
+        <field name="groups" eval="[(6, 0, [ref('base.group_user')])]" />
+    </record>
+</odoo>

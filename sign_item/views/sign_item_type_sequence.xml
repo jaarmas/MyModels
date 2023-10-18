@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_sign_item_type_form" model="ir.ui.view">
+            <field name="name">sign.item.type.form</field>
+            <field name="model">sign.item.type</field>
+            <field name="inherit_id" ref="sign.sign_item_type_view_form"/>
+            <field name="arch" type="xml">
+                <data>
+                    <xpath expr="//group" position="after">
+                        <group>
+                            <field name="sequence_id" string="Related Sequence" attrs="{'invisible': [('item_type', '!=', 'sequential')]}"/>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="sequence_code" string="Sequence Code" attrs="{'invisible': [('item_type', '!=', 'sequential')]}"/>
+                                <field name="sequence_prefix" string="Sequence Prefix" attrs="{'invisible': [('item_type', '!=', 'sequential')]}"/>
+                                <field name="sequence_suffix" string="Sequence Suffix" attrs="{'invisible': [('item_type', '!=', 'sequential')]}"/>
+                            </group>
+                            <group>
+                                <field name="sequence_padding" string="Sequence Size" attrs="{'invisible': [('item_type', '!=', 'sequential')]}" />
+                                <field name="sequence_number_increment" string="Step" attrs="{'invisible': [('item_type', '!=', 'sequential')]}"/>
+                                <field name="sequence_next_number" string="Next Number" attrs="{'invisible': [('item_type', '!=', 'sequential')]}"/>
+                            </group>
+                           
+                        </group>
+                         <button name="save_sequence_changes" string="Save Changes in Sequence" type="object" class="oe_highlight" attrs="{'invisible': [('item_type', '!=', 'sequential')]}"/>
+                    </xpath>
+                </data>
+            </field>
+        </record>
+    </data>
+</odoo>
